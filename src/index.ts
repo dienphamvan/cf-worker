@@ -1,5 +1,5 @@
 export default {
-    async fetch(request, env, ctx) {
+    async fetch(request: any, env: any, ctx: any) {
         try {
             console.log('Request Headers:', JSON.stringify(request))
             console.log('env: ', JSON.stringify(env))
