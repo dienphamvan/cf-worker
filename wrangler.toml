@@ -1,0 +1,5 @@
+name = "redirect-worker"
+main = "index.js"
+compatibility_date = "2025-06-20"
+
+routes = ["api.dienphamvan.site/*"]
