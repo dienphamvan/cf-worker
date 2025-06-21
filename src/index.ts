@@ -1,16 +1,9 @@
-const REDIRECT_SITES = ['api.dienphamvan.site']
+const REDIRECT_SITES = ['api.dienphamvan.site', 'carental.dienphamvan.site']
 const FALLBACK_SITE = 'https://fallback.dienphamvan.site'
 
 export default {
     async fetch(request: Request, env: any, ctx: any): Promise<Response> {
         try {
-            console.log(
-                'Request 124:',
-                request,
-                JSON.stringify(request.url),
-                JSON.stringify(request)
-            )
-
             const isRedirect = REDIRECT_SITES.some((site) =>
                 request.url.includes(site)
             )
