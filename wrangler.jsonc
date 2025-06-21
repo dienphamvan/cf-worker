@@ -5,5 +5,5 @@
     "build": {
         "command": "npm run build"
     },
-    "route": "api.dienphamvan.site/*"
+    "routes": ["api.dienphamvan.site/*", "carental.dienphamvan.site/*"]
 }
