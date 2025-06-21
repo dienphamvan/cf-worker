@@ -1,16 +1,23 @@
-export default {
-    async fetch(request: any, env: any, ctx: any) {
-        try {
-            console.log('Request Headers:', JSON.stringify(request))
-            console.log('env: ', JSON.stringify(env))
-            console.log('ctx: ', JSON.stringify(ctx))
+const REDIRECT_SITES = ['api.dienphamvan.site']
+const FALLBACK_SITE = 'fallback.dienphamvan.site'
 
-            // Attempt to fetch from origin
+export default {
+    async fetch(request: Request, env: any, ctx: any): Promise<Response> {
+        try {
+            console.log('Request:', request)
+
+            const isRedirect = REDIRECT_SITES.some((site) =>
+                request.url.includes(site)
+            )
+            if (isRedirect) {
+                console.log('Redirecting to fallback site')
+                return Response.redirect(FALLBACK_SITE, 302)
+            }
+
             const response = await fetch(request)
 
-            // Clone and modify the response to include CORS headers
             const newHeaders = new Headers(response.headers)
-            newHeaders.set('Access-Control-Allow-Origin', '*') // or specific origin
+            newHeaders.set('Access-Control-Allow-Origin', '*')
             newHeaders.set(
                 'Access-Control-Allow-Methods',
                 'GET,HEAD,POST,OPTIONS'
@@ -23,16 +30,8 @@ export default {
                 headers: newHeaders,
             })
         } catch (err) {
-            // Redirect to fallback or return static message
-            return new Response('Site is down', {
-                status: 503,
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': 'GET,HEAD,POST,OPTIONS',
-                    'Access-Control-Allow-Headers': '*',
-                    'Content-Type': 'text/plain',
-                },
-            })
+            console.error('Error:', err)
+            return Response.redirect(FALLBACK_SITE, 302)
         }
     },
 }
