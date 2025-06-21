@@ -4,7 +4,12 @@ const FALLBACK_SITE = 'fallback.dienphamvan.site'
 export default {
     async fetch(request: Request, env: any, ctx: any): Promise<Response> {
         try {
-            console.log('Request:', request)
+            console.log(
+                'Request 124:',
+                request,
+                JSON.stringify(request.url),
+                JSON.stringify(request)
+            )
 
             const isRedirect = REDIRECT_SITES.some((site) =>
                 request.url.includes(site)
