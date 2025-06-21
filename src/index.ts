@@ -1,5 +1,5 @@
 const REDIRECT_SITES = ['api.dienphamvan.site']
-const FALLBACK_SITE = 'fallback.dienphamvan.site'
+const FALLBACK_SITE = 'https://fallback.dienphamvan.site'
 
 export default {
     async fetch(request: Request, env: any, ctx: any): Promise<Response> {
