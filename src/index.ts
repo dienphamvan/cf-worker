@@ -1,4 +1,7 @@
-const REDIRECT_SITES: string[] = []
+const REDIRECT_SITES: string[] = [
+    'api.dienphamvan.site',
+    'carental.dienphamvan.site',
+]
 const FALLBACK_SITE = 'https://fallback.dienphamvan.site'
 
 export default {
